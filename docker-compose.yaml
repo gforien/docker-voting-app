@@ -1,0 +1,43 @@
+version: '2'
+
+services:
+  vote:
+    image: bretfisher/examplevotingapp_vote
+    ports:
+      - 80:80
+    networks:
+      - net1
+
+  redis:
+    image: redis:3.2
+    networks:
+      - net1
+
+  worker:
+    image: bretfisher/examplevotingapp_worker
+    networks:
+      - net1
+      - net2
+
+  db:
+    image: postgres:9.4
+    networks:
+      - net2
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  
+  result:
+    image: bretfisher/examplevotingapp_result
+    networks:
+      - net2
+    ports:
+      - 5001:80
+  
+volumes:
+  db-data:
+
+networks:
+  net1:
+  net2:
