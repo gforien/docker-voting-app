@@ -95,11 +95,9 @@ Course ⌚:
 
 # Réponse 3, docker swarm
 
-Course ⌚:
-- 11m40
-
-# Réponse 4, docker stack
-
 ```sh
 docker stack deploy 
 ```
+
+Course ⌚:
+- 11m40
